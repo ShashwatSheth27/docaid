@@ -25,8 +25,8 @@ class AppointmentSeeder extends Seeder
             $atime = $faker->time($format = 'H:i:s', $min = 'now');
             $endTime = date('H:i:s', strtotime($atime . '+30 minutes'));
             DB::table('appointments')->insert([
-                'user_id' => $faker->numberBetween($min = 1, $max = 101),
-                'doctor_id' => $faker->numberBetween($min = 1, $max = 100),
+                'user_id' => $faker->numberBetween($min = 1, $max = 10),
+                'doctor_id' => $faker->numberBetween($min = 1, $max = 10),
                 'adate' => $adate,
                 'atime' => $atime,
                 'end_time' => $endTime,

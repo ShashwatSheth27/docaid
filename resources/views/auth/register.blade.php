@@ -1,14 +1,11 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
+            <a href="/" class="flex justify-center">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
             <h1>Register Patient</h1>
         </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -17,28 +14,40 @@
             <div>
                 <x-label for="firstname" :value="__('FirstName')" />
 
-                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
+                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" autofocus />
+                @error('firstname')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-            <div>
+            <div class="mt-4">
                 <x-label for="lastname" :value="__('LastName')" />
 
-                <x-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus />
+                <x-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" autofocus />
+                @error('lastname')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"  />
+                @error('email')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mt-4">
                 <x-label for="phone_no" :value="__('Phone No.')" />
 
-                <x-input id="phone_no" class="block mt-1 w-full" type="number" name="phone_no" :value="old('phone_no')" required />
+                <x-input id="phone_no" class="block mt-1 w-full" type="number" name="phone_no" :value="old('phone_no')"/>
+                @error('phone_no')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mt-4">
                 <x-label for="country" :value="__('Country')" />
-                <select name="country" id="country" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                <select name="country" id="country" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Country</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Argentina">Argentina</option>
@@ -120,41 +129,55 @@
                     <option value="Vietnam">Vietnam</option>
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
+                @error('country')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="flex mt-4">
-                <x-label for="gender" :value="__('Gender')" />
-
-                &nbsp;&nbsp;&nbsp;&nbsp;Male&nbsp;<x-input id="gender" class="block mt-1" type="radio" name="gender" value="Male" required />&nbsp;
-                &nbsp;Female&nbsp;<x-input id="gender" class="block mt-1" type="radio" name="gender" value="Female" required />&nbsp;
-                &nbsp;Other&nbsp;<x-input id="gender" class="block mt-1" type="radio" name="gender" value="Other" required />&nbsp;
+            <div class="mt-4">
+                <div class="flex" style="gap: 10px">
+                    <x-label for="gender" :value="__('Gender')" class="align-content-center m-0"  />
+                    <input id="gender" class="block mt-1" type="radio" name="gender" value="Male" @checked(old('gender')=='Male') />Male
+                    <input id="gender" class="block mt-1" type="radio" name="gender" value="Female" @checked(old('gender')=='Female') />Female
+                    <input id="gender" class="block mt-1" type="radio" name="gender" value="Other" @checked(old('gender')=='Other') />Other
+                </div>
+                @error('gender')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mt-4">
                 <x-label for="dob" :value="__('Date Of Birth')" />
 
-                <x-input id="dob" class="block mt-1 w-full" type="date" name="dob" :value="old('dob')" required />
+                <x-input id="dob" class="block mt-1 w-full" type="date" name="dob" :value="old('dob')" />
+                @error('dob')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mt-4">
                 <x-label for="address" :value="__('Address')" />
-                <textarea name="address" id="address" :value="old('address')" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required></textarea>
+                <textarea name="address" id="address" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('address') }}</textarea>
+                @error('address')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="new-password" :value="old('password')" />
+                @error('password')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-
+            
             <!-- Confirm Password -->
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" :value="old('password_confirmation')" />
+                @error('password_confirmation')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="flex items-center justify-end mt-4">

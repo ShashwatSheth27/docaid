@@ -34,15 +34,16 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstname' => ['required', 'string','min:2', 'max:20'],
-            'lastname' => ['required', 'string','min:2', 'max:20'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'phone_no' => ['required','digits:10','min:10','max:10'],
-            'country' => ['required','string'],
-            'gender' => ['required','string'],
-            'dob' => ['required','date','before_or_equal:yesterday'],
-            'address' => ['required','alpha_dash','max:150'],
+            'firstname' => ['bail','required', 'string','min:2', 'max:20'],
+            'lastname' => ['bail','required', 'string','min:2', 'max:20'],
+            'email' => ['bail','required', 'string', 'email', 'max:50', 'unique:users'],
+            'password' => ['bail','required', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => ['required'],
+            'phone_no' => ['bail','required','digits:10','min:10','max:10'],
+            'country' => ['bail','required','string'],
+            'gender' => ['bail','required','string'],
+            'dob' => ['bail','required','date','before_or_equal:yesterday'],
+            'address' => ['bail','required','max:150'],
         ]);
 
         $user = User::create([
