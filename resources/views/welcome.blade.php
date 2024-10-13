@@ -42,7 +42,7 @@
     <body class="antialiased">
 
         <!-- ======= Top Bar ======= -->
-        <div id="topbar" class="d-flex align-items-center fixed-top">
+        {{-- <div id="topbar" class="d-flex align-items-center fixed-top">
             <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
             <div class="align-items-center d-none d-md-flex">
                 <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
@@ -51,19 +51,19 @@
                 <i class="bi bi-phone"></i> Contact us now
             </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- ======= Header ======= -->
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center">
 
-            <a href="{{ route('home')}}" class="logo me-auto"><img src="assets/img/logo.png" alt="">  DocAid</a>
+            <a href="{{ route('home')}}" class="logo me-auto align-items-center d-flex gap-2"><img src="assets/img/logo.png" alt="">DocAid</a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    {{-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> --}}
                     {{-- <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li> --}}
                     @if (Route::has('login'))
                             @auth
@@ -199,7 +199,7 @@
                 <div class="text-center">
                 <h3>In an emergency? Need help now?</h3>
                 <p>Schedule an instant appointment with the doctor on call without an inch of delay right there in your hands</p>
-                <a class="cta-btn scrollto" href="">Get the Doctor</a>
+                @auth <button class="cta-btn scrollto bg-transparent" data-bs-toggle='modal' data-bs-target='#appointment_modal'>Get the Doctor</button> @endauth
                 </div>
 
             </div>
@@ -217,7 +217,7 @@
                     <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
 
                     <p><strong>Doctors</strong></p>
-                    <a href="">Find out more &raquo;</a>
+                    {{-- <a href="">Find out more &raquo;</a> --}}
                     </div>
                 </div>
 
@@ -226,7 +226,7 @@
                     <i class="far fa-hospital"></i>
                     <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Departments</strong></p>
-                    <a href="">Find out more &raquo;</a>
+                    {{-- <a href="">Find out more &raquo;</a> --}}
                     </div>
                 </div>
 
@@ -235,7 +235,7 @@
                     <i class="fas fa-flask"></i>
                     <span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Research Lab</strong></p>
-                    <a href="">Find out more &raquo;</a>
+                    {{-- <a href="">Find out more &raquo;</a> --}}
                     </div>
                 </div>
 
@@ -244,7 +244,7 @@
                     <i class="fas fa-award"></i>
                     <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Awards</strong></p>
-                    <a href="">Find out more &raquo;</a>
+                    {{-- <a href="">Find out more &raquo;</a> --}}
                     </div>
                 </div>
 
@@ -298,32 +298,32 @@
                 <div class="row">
                 <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
                     <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                    <h4 class="title"><a href="">Emergency Assistance</a></h4>
+                    <h4 class="title">Emergency Assistance</h4>
                     <p class="description">Provide emergency contact information or direct access to nearby medical facilities in case of urgent medical situations.</p>
                 </div>
                 <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
                     <div class="icon"><i class="fas fa-pills"></i></div>
-                    <h4 class="title"><a href="">Specialty Search</a></h4>
+                    <h4 class="title">Specialty Search</h4>
                     <p class="description">Enable users to search for doctors based on their specialties, locations, and availability.</p>
                 </div>
                 <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
                     <div class="icon"><i class="fas fa-hospital-user"></i></div>
-                    <h4 class="title"><a href="">Labs and Diagnostic Centers</a></h4>
+                    <h4 class="title">Labs and Diagnostic Centers</h4>
                     <p class="description">Facilitate scheduling and access to lab tests and diagnostic services through partnerships with labs and centers.</p>
                 </div>
                 <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
                     <div class="icon"><i class="fas fa-dna"></i></div>
-                    <h4 class="title"><a href="">Telemedicine Services</a></h4>
+                    <h4 class="title">Telemedicine Services</h4>
                     <p class="description">Offer virtual doctor consultations through video calls or secure chat options.</p>
                 </div>
                 <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
                     <div class="icon"><i class="fas fa-wheelchair"></i></div>
-                    <h4 class="title"><a href="">Real-Time Availability</a></h4>
+                    <h4 class="title">Real-Time Availability</h4>
                     <p class="description">Display real-time availability of doctors' schedules to help users choose suitable appointment times.</p>
                 </div>
                 <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
                     <div class="icon"><i class="fas fa-notes-medical"></i></div>
-                    <h4 class="title"><a href="">Prescription Management</a></h4>
+                    <h4 class="title">Prescription Management</h4>
                     <p class="description">Allow doctors to issue digital prescriptions and provide patients with easy access to their prescription details.</p>
                 </div>
                 </div>
@@ -650,19 +650,19 @@
             </section><!-- End Frequently Asked Questioins Section -->
 
             <!-- ======= Contact Section ======= -->
-            <section id="contact" class="contact">
+            {{-- <section id="contact" class="contact">
             <div class="container">
 
                 <div class="section-title">
                 <h2>Contact</h2>
-                {{-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> --}}
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
                 </div>
 
             </div>
 
-            {{-- <div>
+            <div>
                 <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-            </div> --}}
+            </div>
 
             <div class="container">
 
@@ -724,7 +724,7 @@
                 </div>
 
             </div>
-            </section><!-- End Contact Section -->
+            </section><!-- End Contact Section --> --}}
 
             <div class="modal" id="appointment_modal">
                 <div class="modal-dialog">
@@ -776,20 +776,20 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-info">
-                    <h3>DocAid</h3>
-                    <p>
-                        Gujarat, <br>
-                        India<br><br>
-                        <strong>Phone:</strong>74681532822<br>
-                        <strong>Email:</strong> info@example.com<br>
-                    </p>
-                    <div class="social-links mt-3">
-                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                    </div>
+                        <h3>DocAid</h3>
+                        {{-- <p>
+                            Gujarat, <br>
+                            India<br><br>
+                            <strong>Phone:</strong>74681532822<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -808,22 +808,22 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Departments</h4>
                     <ul>
-                    <li><i class="bx bx-chevron-right"></i> <a href="#">Cardiology</a></li>
-                    <li><i class="bx bx-chevron-right"></i> <a href="#">Neurology</a></li>
-                    <li><i class="bx bx-chevron-right"></i> <a href="#">Hepatology</a></li>
-                    <li><i class="bx bx-chevron-right"></i> <a href="#">Pediatrics</a></li>
-                    {{-- <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic</a></li> --}}
+                    <li><i class="bx bx-chevron-right"></i> Cardiology</li>
+                    <li><i class="bx bx-chevron-right"></i> Neurology</li>
+                    <li><i class="bx bx-chevron-right"></i> Hepatology</li>
+                    <li><i class="bx bx-chevron-right"></i> Pediatrics</li>
+                    {{-- <li><i class="bx bx-chevron-right"></i> Graphic</li> --}}
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-newsletter">
+                {{-- <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Our Newsletter</h4>
-                    {{-- <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p> --}}
+                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                     <form action="" method="post">
                     <input type="email" name="email"><input type="submit" value="Subscribe">
                     </form>
 
-                </div>
+                </div> --}}
 
                 </div>
             </div>
@@ -832,9 +832,6 @@
             <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong><span>DocAid</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                Designed by <a href="">20DCE127</a>
             </div>
             </div>
         </footer><!-- End Footer -->
