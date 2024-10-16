@@ -142,4 +142,9 @@ class DoctorController extends Controller
         Doctor::where('id',$id)->delete();
         return response()->json(['success'=>'Doctor Deleted Successfully!']);
     }
+
+    public function getActiveDoctors($fields)
+    {
+        return Doctor::select($fields)->get();
+    }
 }

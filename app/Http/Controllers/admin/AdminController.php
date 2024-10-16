@@ -32,11 +32,16 @@ class AdminController extends Controller
 
     protected function attemptlogin(Request $request)
     {
+        $request->validate([
+            'email' => ['required','string','email','max:255'],
+            'password' => ['required']
+        ]);
+
         Auth::guard('admin')->attempt($request->only('email', 'password'));
         if(Auth::guard('admin')->check()) {
             return redirect()->route('admin.index');
         } else {
-            return redirect()->back()->withErrors(['Invalid Credentials!!']);
+            return redirect()->back()->withErrors(['invalid'=>'Invalid credentials!'])->withInput();
         }
     }
 

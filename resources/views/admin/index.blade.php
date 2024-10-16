@@ -298,46 +298,7 @@
         </div>
       </div>
     </div>
-    <div class="modal" id="appointment_modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title">Submit Appointment Details</h1>
-          </div>
-          <div class="modal-body">
-            <form id="appointment_form">
-              <div class="form_fields">
-                <div class="row g-1 p-2">
-                  @csrf
-                  <div class="row g-1 p-2">
-                    <span class="doc-error"></span>
-                  </div>
-                  <div class="row g-1 p-2">
-                    <label for="email">Patient's Email :</label><input type="email" name="email" id="email">
-                  </div>
-                  <div class="row g-1 p-2">
-                    <label for="dname">Doctor's Name :</label><input type="text" name="dname" id="dname">
-                    <!-- <select id="doc_avl" name="dname"></select> -->
-                  </div>
-                  <div class="row g-1 p-2">
-                    <label for="date_time">Appointment Date :</label><input type="date" name="adate" id="adate" min="{{ date("Y-m-d")}}">
-                  </div>
-                  <div class="row g-1 p-2">
-                    <label for="date_time">Appointment Time :</label><input type="time" name="atime" id="atime" min="<?php date_default_timezone_set("Asia/Calcutta");echo(date("H:i:s"))?>">
-                  </div>
-                  <div class="row g-1 p-2">
-                    <button type="submit" name="appointment_submit" id="appointment_submit" class="btn btn-primary">Submit Details</button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <x-appointment-modal />
   </main>
   @push('page_scripts')
   {{ $dataTable->scripts()}}
