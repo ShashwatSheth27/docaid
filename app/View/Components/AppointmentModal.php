@@ -28,7 +28,7 @@ class AppointmentModal extends Component
         }
         $this->viewData['doctors'] = $options;
 
-        if(Auth::check() && !Auth::guard('admin')->check() && Auth::user()->email){
+        if(Auth::check() && Auth::guard('web')->check() && Auth::user()->email){
             $this->viewData['userEmail'] = Auth::user()->email;
         }
     }
@@ -40,7 +40,6 @@ class AppointmentModal extends Component
      */
     public function render()
     {
-        // pass the patient email is user logged in
         // pass the pre defined options or available time slots
         return view('components.appointment-modal', $this->viewData);
     }

@@ -20,13 +20,31 @@
         <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
 
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        
-        
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="{{ asset('assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
+        <link href="{{ asset('assets/css/index.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script
 
         <!-- Styles -->
         <style>
@@ -82,7 +100,7 @@
                                         </form></li>
                                     </ul>
                                 </li>
-                                <button class="appointment-btn scrollto"  data-bs-toggle='modal' data-bs-target='#appointment_modal'><span class="d-none d-md-inline">Make an Appointment</span></button>
+                                <button class="appointment-btn"  data-bs-toggle='modal' data-bs-target='#appointment_modal'><span class="d-none d-md-inline">Make an Appointment</span></button>
                             @else
                                 @if (Route::has('register'))
                                     <li><a href="{{ route('register') }}">Register</a></li>
@@ -199,7 +217,7 @@
                 <div class="text-center">
                 <h3>In an emergency? Need help now?</h3>
                 <p>Schedule an instant appointment with the doctor on call without an inch of delay right there in your hands</p>
-                @auth <button class="cta-btn scrollto bg-transparent" data-bs-toggle='modal' data-bs-target='#appointment_modal'>Get the Doctor</button> @endauth
+                @auth <button class="cta-btn bg-transparent" data-bs-toggle='modal' data-bs-target='#appointment_modal'>Get the Doctor</button> @endauth
                 </div>
 
             </div>

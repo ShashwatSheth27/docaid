@@ -104,9 +104,7 @@ class ValidationController extends Controller
         }
     }
     public function validate_doc(Request $request){
-        $query_resqonse = Doctor::where([
-            ['firstname',$request->dname],
-        ])->first();
+        $query_resqonse = Doctor::where([['id',$request->dname]])->first();
         if($query_resqonse!=NULL){
             echo json_encode(true);
         }else{

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\DataTables\AppointmentDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
@@ -40,14 +41,18 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'dname' => ['required', 'string','min:2', 'max:20'],
-            'email' => ['required', 'string', 'email', 'max:50'],
+            'dname' => ['required'],
+            'email' => ['required', 'string', 'email'],
             'adate' => ['required','date','after:now'],
             'atime' => ['required','date_format:H:i:s'],
         ]);
 
+        if (Auth::guard('web')->check() && $request->user()->email !== $request->email) {
+            return response()->json(['error' => 'Unauthorized, you cannot create appointment for other users']);
+        }
+
         $user_id = User::where('email',$request->email)->first();
-        $doc_id = Doctor::where('firstname',$request->dname)->first();
+        $doc_id = Doctor::where('id',$request->dname)->first();
 
         $user = Appointment::create([
             'user_id' => $user_id->id,
@@ -57,7 +62,7 @@ class AppointmentController extends Controller
             'end_time' => date('H:i:s', strtotime($request->atime . '+30 minutes')),
         ]);
 
-        return true;
+        return response()->json(['success'=>true]);
     }
 
     /**

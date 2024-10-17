@@ -312,25 +312,6 @@
       $('#patient_form')[0].reset();
       $('#patient_form').validate().resetForm();
     })
-    $('.appointment_modal_button').click(function() {
-      // $.ajax({
-      //   url:'method.php',
-      //   type:'POST',
-      //   data:{
-      //     method:'user_avl',
-      //   },
-      //   success:function(data){
-      //     $('select').html("<option value='test'>TEST</option>");
-      //   }
-      // })
-      $('#appointment_form')[0].reset();
-      $('#appointment_form').validate().resetForm();
-      $('#appointment_submit').html("Submit Details");
-      $('#appointment_submit').attr('disabled', false);
-    })
-    $('#appointment_form').change(function() {
-      $('.doc-error').html('');
-    })
     $.validator.addMethod("greaterThan",
       function(value, element, param) {
         var i = parseInt(value);
@@ -594,90 +575,6 @@
             console.log("xhr =>" + xhr + "|| status =>" + status + "|| error =>" + error);
             $.each(xhr.responseJSON.errors, function(i, error) {
                 var element = $('#patient_form').find('[name="' + i + '"]').last();
-                element.after($('<span class="' + i +'error" style="color: red;">' + error[0] + '</span>'));
-            });
-          },
-        })
-      }
-    })
-    $('#appointment_form').validate({
-      rules: {
-        email: {
-          required: true,
-          email: true,
-          maxlength:30,
-          minlength:2,
-          remote: {
-            url: '{{ route('validate_patient')}}',
-            type: 'GET',
-            data: {
-              method: 'validate_patient',
-            },
-          },
-        },
-        dname: {
-          required: true,
-          lettersonly: true,
-          maxlength:30,
-          minlength:2,
-          remote: {
-            url: '{{ route('validate_doc')}}',
-            type: 'GET',
-            data: {
-              method: 'validate_doc',
-            },
-          },
-        },
-        adate: {
-          required: true,
-        },
-        atime: {
-          required: true,
-        },
-      },
-      messages: {
-        dname: {
-          required: "* Doctor's Name is required!",
-          lettersonly: "* Only Characters allowed!",
-          remote: "* Doctor Not available!",
-        },
-        email: {
-          required: "* Patient's Email is required",
-          email: "* Provide Valid Email!",
-          remote: "* Patient is not registered!",
-        },
-        adate: {
-          required: '* Appointment date is required!',
-        },
-        atime: {
-          required: '* Appointment time is required!',
-        },
-      },
-      submitHandler: function() {
-        // $('#appointment_submit').html("Sending Email, Please Wait....");
-        $('#appointment_submit').attr('disabled', true);
-        $.ajax({
-          url: '{{ route('appointments.store')}}',
-          type: 'POST',
-          data: $("#appointment_form").serialize(),
-          success: function(data) {
-            if (data == true) {
-              $('.doc-error').html('');
-              $('#appointment_submit').html("Submit Details");
-              $('#appointment_submit').attr('disabled', false);
-              $('#appointment_modal').modal('hide');
-              window.location = '{{ route('appointments.index')}}';
-              // alert('Appointment Booked Successfully, Email sent to the Patient.');
-            } else {
-              $('.doc-error').html(data);
-              $('#appointment_submit').html("Submit Details");
-              $('#appointment_submit').attr('disabled', false);
-            }
-          },
-          error: function(xhr, status, error) {
-            console.log("xhr =>" + xhr + "|| status =>" + status + "|| error =>" + error);
-            $.each(xhr.responseJSON.errors, function(i, error) {
-                var element = $('#appointment_form').find('[name="' + i + '"]').last();
                 element.after($('<span class="' + i +'error" style="color: red;">' + error[0] + '</span>'));
             });
           },

@@ -2,7 +2,10 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\AppointmentController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -25,4 +28,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
 	Route::resource('dashboard/doctors',DoctorController::class);
 	Route::resource('dashboard/patients',PatientController::class);
 	Route::resource('dashboard/appointments',AppointmentController::class);
+});
+
+Route::middleware('shared')->group(function () {
+    Route::post('book-appointment', [AppointmentController::class, 'store'])->name('book-appointment');
 });
